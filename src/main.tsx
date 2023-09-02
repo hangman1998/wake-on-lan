@@ -3,9 +3,11 @@ import ReactDOM from "react-dom/client";
 import { NextUIProvider } from "@nextui-org/react";
 import App from "./App";
 import "./styles.css";
+import { Toaster } from 'sonner'
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <NextUIProvider>
+      <Toaster position="bottom-center" />
       <App />
     </NextUIProvider>
   </React.StrictMode>,
