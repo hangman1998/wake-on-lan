@@ -26,7 +26,7 @@ export async function connect(): Promise<Database> {
 
 export const getMachines = async () => {
     const db = await connect();
-    return await db.select<Machine>("SELECT * FROM machine");
+    return await db.select<Machine[]>("SELECT * FROM machine");
 };
 
 
