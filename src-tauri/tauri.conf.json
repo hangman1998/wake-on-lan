@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "wake-on-lan",
-    "version": "0.0.0"
+    "productName": "wol",
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -21,7 +21,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "ir.yousefjavaherian.wol",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -37,7 +37,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "wake-on-lan",
+        "title": "WOL",
         "width": 800,
         "height": 600
       }
