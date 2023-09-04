@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod wol;
+use tauri_plugin_sql::{Migration, MigrationKind};
 use wol::MagicPacket;
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -27,8 +28,20 @@ fn send_magic_packet(mac_address: &str) -> Result<(), String> {
 
 fn main() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_sql::Builder::default().build())
         .invoke_handler(tauri::generate_handler![greet, send_magic_packet])
+        .plugin(
+            tauri_plugin_sql::Builder::default()
+                .add_migrations(
+                    "sqlite:main.db",
+                    vec![Migration {
+                        version: 1,
+                        description: "create machines table",
+                        sql: include_str!("./migrations/init.sql"),
+                        kind: MigrationKind::Up,
+                    }],
+                )
+                .build(),
+        )
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

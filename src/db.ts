@@ -8,19 +8,7 @@ export type Machine = {
 }
 
 export async function connect(): Promise<Database> {
-    if (db) {
-        return db;
-    }
-    db = await Database.load("sqlite:main.db");
-    db.execute(
-        `
-      CREATE TABLE IF NOT EXISTS machine (
-        name VARCHAR(100) PRIMARY KEY,
-        mac CHAR(17) NOT NULL UNIQUE,
-        address VARCHAR(100),
-        );
-        `
-    );
+    if (!db) db = await Database.load("sqlite:main.db");
     return db;
 }
 
